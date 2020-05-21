@@ -55,7 +55,7 @@ var defaultMaxEntryCap = 10000
 // defaultMaxJobCap default max job chan cap.
 var defaultMaxJobCap = 10000
 
-// Option 采用func Option功能模式为Runner添加参数
+// Option func Option to change pool
 type Option func(p *Pool)
 
 // NewPool returns a pool.
