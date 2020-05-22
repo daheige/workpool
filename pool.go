@@ -211,7 +211,7 @@ func (p *Pool) isInterrupt() bool {
 	}
 }
 
-// Recovery catch a recover.
+// recovery catch a recover.
 func (p *Pool) recovery() {
 	defer func() {
 		if e := recover(); e != nil {
