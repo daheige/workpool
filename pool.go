@@ -23,7 +23,7 @@ func NewTask(fn func() error) *Task {
 }
 
 // run exec a task.
-func (t *Task) run(logEntry logger) {
+func (t *Task) run(logEntry Logger) {
 	if t == nil {
 		return
 	}
@@ -37,8 +37,8 @@ func (t *Task) run(logEntry logger) {
 	t.fn()
 }
 
-// logger log record interface
-type logger interface {
+// Logger log record interface
+type Logger interface {
 	Println(args ...interface{})
 }
 
@@ -47,7 +47,7 @@ type Pool struct {
 	entryChan    chan *Task     // task entry chan
 	jobChan      chan *Task     // job chan
 	workerNum    int            // worker num
-	logEntry     logger         // logger interface
+	logEntry     Logger         // logger interface
 	stop         chan struct{}  // stop sem
 	interrupt    chan os.Signal // interrupt signal
 	wait         time.Duration  // close entry chan wait time,default 5s
@@ -124,7 +124,7 @@ func NewPool(num int, ec int, jc ...int) *Pool {
 }
 
 // WithLogger change logger entry.
-func WithLogger(logEntry logger) Option {
+func WithLogger(logEntry Logger) Option {
 	return func(p *Pool) {
 		p.logEntry = logEntry
 	}
